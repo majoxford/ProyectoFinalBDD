@@ -1,0 +1,58 @@
+
+
+<h3>Cuentas</h3>
+
+<% cuentas.forEach(function(editar) {%>
+   <%= editar.value.nombre %>
+   <%= editar.value.cuenta %>
+   <%= editar.value.tipo %>
+   <%= editar.value.balance %>
+   <form method= "post" action="/editar/<%= editar.key %>">
+
+<div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">Nombre:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="nombre" placeholder="add nombre">
+</div>
+<div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">cuenta:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="tipoCuenta" placeholder="add tipo">
+ </div>
+ <div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">numero:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="numeroCuenta" placeholder="add numero">
+ </div>
+ <div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">balance:</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="balance" placeholder="add balance">
+ </div>
+        <input type="hidden" value="<%= editar.value.rev %>" name="rev">
+        <input type="submit" value="O">
+   </form>
+   <%}); %>
+
+
+
+
+<ul>
+<% cuentas.forEach(function(cuenta){ %>
+    <li>
+        <h4><%= cuenta.value.nombre %></h4>
+        <ul>
+            <li>
+                <h4><%= cuenta.value.cuenta %></h4>
+            </li>
+            <li>
+                <h4><%= cuenta.value.tipo %></h4>
+            </li>
+            <li>
+                <h4><%= cuenta.value.balance %></h4>
+                <form method="post" action="/cuentas/delete/<%= cuenta.key %>">
+                    <input type="hidden" value="<%= cuenta.value.rev %>" name="rev">
+                    <input type="submit" value="X">
+                </form>
+            </li>
+        </ul>
+    </li>
+ 
+<%}); %>
+</ul>

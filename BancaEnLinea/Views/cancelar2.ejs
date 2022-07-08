@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Banco UTP</title>
+  <base href="/home">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success navbar-dark p-3">
+        <div class="container-fluid  ">
+          <a class="navbar-brand"  href="#">Banco UTP</a>
+          <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page"  href="http://localhost:3000/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  href="http://localhost:3000/agregar">Agregar</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://localhost:3000/cancelar2" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Cuentas
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item"  href="http://localhost:3000/cancelar2">Lista de cuentas</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+<div class="container">
+    <h1 class="text-center pt-5">Reportes de Cuentas</h1>
+    <h3 class="text-center">Consulta los clientes.</h3>
+    <h5 class="pb-4">
+        <div class="form-check form-switch pt-5">
+        </div>
+    </h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo de Cuenta</th>
+                    <th>Numero de Cuenta</th>
+                    <th>Balance</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% cuentas.forEach(function(cuenta){ %>
+                <tr> 
+                    <td> <%= cuenta.value.nombre %> </td>
+                    <td> <%= cuenta.value.tipo %> </td>
+                    <td> <%= cuenta.value.cuenta %> </td>
+                    <td> <%= cuenta.value.balance %> </td>
+                    <td>
+                    <form method="post" action="/cuentas/delete/<%= cuenta.key %>">
+                      <input type="hidden" value="<%= cuenta.value.rev %>" name="rev">
+                      <div class = "text-center">
+                      <input type="submit" class="btn btn-primary"  value="X">
+                  </form>
+                  <a type="button" href="http://localhost:3000/editar" class="btn btn-primary ">editar</a></div>
+                </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+</body>
+</html>
